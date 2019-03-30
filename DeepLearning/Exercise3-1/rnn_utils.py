@@ -9,3 +9,15 @@ def softmax(x):
 
 def sigmoid(x):
     return 1/(1 + np.exp(-x))
+
+def get_initial_loss(vocab_size, seq_length):
+    return -np.log(1.0/vocab_size)*seq_length
+
+def smooth(loss, cur_loss):
+    return loss*0.999 + cur_loss*0.001
+
+def print_sample(sample_ix, ix_to_char):
+    txt = ''.join(ix_to_char[ix] for ix in sample_ix)
+    txt = txt[0].upper() + txt[1:]  # capitalize first character
+    print ('%s' % (txt, ), end='')
+
